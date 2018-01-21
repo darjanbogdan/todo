@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.1" />
+    <PackageReference Include="SimpleInjector" Version="4.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Todo.Domain.Identity\Todo.Domain.Identity.csproj" />
+    <ProjectReference Include="..\Todo.Domain.Models\Todo.Domain.Model.csproj" />
+    <ProjectReference Include="..\Todo.Domain.Storage\Todo.Domain.Storage.csproj" />
+  </ItemGroup>
+
+</Project>
