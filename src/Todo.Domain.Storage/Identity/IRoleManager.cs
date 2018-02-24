@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Todo.Domain.Storage.Identity
 {
-    public interface IRoleStorage
+    public interface IRoleManager
     {
     }
 }

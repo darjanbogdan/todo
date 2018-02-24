@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Todo.Domain.Model.Identity;
 
-namespace Todo.Repository.Context
+namespace Todo.DataAccess.Context
 {
     public class TodoDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {

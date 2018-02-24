@@ -12,4 +12,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Todo.Domain.Models\Todo.Domain.Model.csproj" />
+  </ItemGroup>
+
 </Project>

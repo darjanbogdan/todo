@@ -15,10 +15,11 @@ using Microsoft.Extensions.Options;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
-using Todo.Domain.Identity.SimpleInjector;
+using Todo.Domain.Identity;
 using Todo.Domain.Model.Identity;
-using Todo.Repository.Context;
-using Todo.Repository.SimpleInjector;
+using Todo.DataAccess.Context;
+using Todo.DataAccess.Identity;
+using Todo.WebApi.Composition;
 
 namespace Todo.WebApi
 {
@@ -36,21 +37,38 @@ namespace Todo.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<TodoDbContext>();
+            services.AddSingleton<TodoDbContextConfiguration>((provider) => new TodoDbContextConfiguration(Configuration.GetConnectionString("TodoConnection")));
 
-            //services.AddIdentity<User, Role>()
-            //    .AddEntityFrameworkStores<TodoDbContext>()
-            //    .AddDefaultTokenProviders();
+            services.AddDbContext<TodoDbContext>();
 
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(options =>
-            //{
-                
-            //});
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<TodoDbContext>()
+                .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 6;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
+
+            services
+                .AddMvcCore()
+                .AddFormatterMappings()
+                .AddJsonFormatters()
+                .AddCors();
 
             IntegrateSimpleInjector(services);
         }
@@ -62,17 +80,9 @@ namespace Todo.WebApi
 
             container.Verify();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseMvc();
-        }
-
-        private void InitializeContainer(IApplicationBuilder app)
-        {
-            container.RegisterMvcControllers(app);
-
-            container.BootstrapRepository(Configuration);
-            container.BootstrapIdentity(Configuration);
         }
 
         private void IntegrateSimpleInjector(IServiceCollection services)
@@ -81,11 +91,19 @@ namespace Todo.WebApi
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddSingleton<IControllerActivator>(
-                new SimpleInjectorControllerActivator(container));
+            services.AddSingleton<IControllerActivator>(new SimpleInjectorControllerActivator(container));
 
             services.EnableSimpleInjectorCrossWiring(container);
             services.UseSimpleInjectorAspNetRequestScoping(container);
+        }
+
+        private void InitializeContainer(IApplicationBuilder app)
+        {
+            container.BootstrapDataAccess(Configuration);
+
+            container.BootstrapIdentity(app, Configuration);
+
+            container.BootstrapWebApi(app, Configuration);
         }
     }
 }

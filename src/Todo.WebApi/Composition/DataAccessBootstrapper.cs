@@ -2,19 +2,22 @@
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Todo.DataAccess;
+using Todo.DataAccess.Context;
+using Todo.DataAccess.Identity;
 using Todo.Domain.Model.Identity;
-using Todo.Repository.Context;
-using Todo.Repository.Identity;
 
-namespace Todo.Repository.SimpleInjector
+namespace Todo.WebApi.Composition
 {
-    public static class Registrations
+    public static class DataAccessBootstrapper
     {
-        public static void BootstrapRepository(this Container container, IConfiguration configuration)
+        public static void BootstrapDataAccess(this Container container, IConfiguration configuration)
         {
             RegisterDatabaseContext(container, configuration);
             RegisterRepositories(container);
-            RegisterStorages(container);
         }
 
         private static void RegisterDatabaseContext(Container container, IConfiguration configuration)
@@ -27,13 +30,8 @@ namespace Todo.Repository.SimpleInjector
         {
             container.Register(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-            container.Register<IUserStore<User>, UserRepository>();
-            container.Register<IRoleStore<Role>, RoleRepository>();
-        }
-
-        private static void RegisterStorages(Container container)
-        {
-
+            container.Register<IUserStore<User>, UserStore>(Lifestyle.Scoped);
+            container.Register<IRoleStore<Role>, RoleStore>(Lifestyle.Scoped);
         }
     }
 }

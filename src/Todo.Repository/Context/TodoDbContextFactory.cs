@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Todo.Repository.Context
+namespace Todo.DataAccess.Context
 {
     public class TodoDbContextFactory : IDesignTimeDbContextFactory<TodoDbContext>
     {
@@ -16,9 +16,7 @@ namespace Todo.Repository.Context
             string connectionString = ReadConnectionString();
 
             var optionsBuilder = new DbContextOptionsBuilder<TodoDbContext>();
-            optionsBuilder
-                .UseSqlServer(connectionString)
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            optionsBuilder.UseSqlServer(connectionString);
 
             return new TodoDbContext(optionsBuilder.Options);
         }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Todo.Domain.Model;
 
-namespace Todo.Repository
+namespace Todo.DataAccess
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IModel, new()
     {

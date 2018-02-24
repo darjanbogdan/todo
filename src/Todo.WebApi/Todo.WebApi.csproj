@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="4.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
     <PackageReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
@@ -24,13 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo.Domain.Identity.SimpleInjector\Todo.Domain.Identity.SimpleInjector.csproj" />
     <ProjectReference Include="..\Todo.Domain.Identity\Todo.Domain.Identity.csproj" />
     <ProjectReference Include="..\Todo.Domain.Models\Todo.Domain.Model.csproj" />
     <ProjectReference Include="..\Todo.Domain.Storage\Todo.Domain.Storage.csproj" />
     <ProjectReference Include="..\Todo.Domain\Todo.Domain.csproj" />
-    <ProjectReference Include="..\Todo.Repository.SimpleInjector\Todo.Repository.SimpleInjector.csproj" />
-    <ProjectReference Include="..\Todo.Repository\Todo.Repository.csproj" />
+    <ProjectReference Include="..\Todo.Repository\Todo.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Middelwares\" />
   </ItemGroup>
 
 </Project>

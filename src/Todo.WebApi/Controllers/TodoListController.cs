@@ -1,26 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Todo.Repository.Context;
+using Todo.Domain.Context;
+using Todo.Domain.Identity;
+using Todo.DataAccess.Context;
+using Todo.Domain.Storage.Identity;
 
 namespace Todo.WebApi.Controllers
 {
     [Route("todo-lists")]
-    public class TodoListController : Controller
+    public class TodoListController : ControllerBase
     {
-        public TodoListController(TodoDbContext dbContext)
+        private readonly IUserManager userStorage;
+
+        public TodoListController(IUserManager userStorage)
         {
-            DbContext = dbContext;
+            this.userStorage = userStorage;
         }
 
-        public TodoDbContext DbContext { get; }
-
-        [HttpGet("{id}")]
-        public Task<IActionResult> GetAsync(string id)
+        [HttpGet("")]
+        public Task<IActionResult> GetAsync()
         {
-            return Task.FromResult<IActionResult>(Ok(DbContext != null));
+            if (this.userStorage != null)
+            {
+
+            }
+
+            return Task.FromResult<IActionResult>(Ok());
         }
     }
 }

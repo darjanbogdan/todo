@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Todo.Domain.Model;
-using Todo.Repository.Context;
+using Todo.DataAccess.Context;
 
-namespace Todo.Repository
+namespace Todo.DataAccess
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IModel, new()
     {

@@ -8,14 +8,18 @@ using Todo.Domain.Storage.Identity;
 
 namespace Todo.Domain.Identity
 {
-    public class RoleManager : RoleManager<Role>, IRoleStorage
+    public class RoleManager: RoleManager<Role>, IRoleManager
     {
         public RoleManager(
             IRoleStore<Role> store, 
-            IEnumerable<IRoleValidator<Role>> roleValidators, 
             ILookupNormalizer keyNormalizer, 
-            IdentityErrorDescriber errors, 
-            ILogger<RoleManager> logger) : base(store, roleValidators, keyNormalizer, errors, logger)
+            ILogger<RoleManager> logger) 
+            : base(
+                store, 
+                roleValidators: null, 
+                keyNormalizer, 
+                errors: null, 
+                logger)
         {
         }
     }

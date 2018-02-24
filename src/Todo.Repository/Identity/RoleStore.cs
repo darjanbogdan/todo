@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Todo.Repository.Context;
+using Todo.DataAccess.Context;
 using Todo.Domain.Model.Identity;
 
-namespace Todo.Repository.Identity
+namespace Todo.DataAccess.Identity
 {
-    public class UserRepository : UserStore<User, Role, TodoDbContext, Guid>
+    public class RoleStore : RoleStore<Role, TodoDbContext, Guid, UserRole, RoleClaim>
     {
-        public UserRepository(TodoDbContext context) 
+        public RoleStore(TodoDbContext context) 
             : base(context)
         {
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{0FCE68B7-4324-49B2-92E6-C816583A2F32}"
 EndProject
@@ -15,17 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Domain.Model", "src\To
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Domain.Storage", "src\Todo.Domain.Storage\Todo.Domain.Storage.csproj", "{99E444D0-1E27-4796-B043-D1C82B95F416}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{12269252-3A0A-49C2-95BA-A5186D57C129}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{12269252-3A0A-49C2-95BA-A5186D57C129}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Repository", "src\Todo.Repository\Todo.Repository.csproj", "{803ECA21-3D7A-4071-A25A-A85D8F3D9B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.DataAccess", "src\Todo.Repository\Todo.DataAccess.csproj", "{803ECA21-3D7A-4071-A25A-A85D8F3D9B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Domain.Identity", "src\Todo.Domain.Identity\Todo.Domain.Identity.csproj", "{AAEBE053-85D1-4662-8066-40D5C180C739}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Repository.SimpleInjector", "src\Todo.Repository.SimpleInjector\Todo.Repository.SimpleInjector.csproj", "{3D98C363-9886-48FF-B121-6EDFD4113CA5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Domain.Identity.SimpleInjector", "src\Todo.Domain.Identity.SimpleInjector\Todo.Domain.Identity.SimpleInjector.csproj", "{263C629D-5599-48EE-8E57-CB40592B7B7D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{27C52690-1FEF-4095-81C6-88EBC45DEA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Domain.Identity", "src\Todo.Domain.Identity\Todo.Domain.Identity.csproj", "{AAEBE053-85D1-4662-8066-40D5C180C739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +51,6 @@ Global
 		{AAEBE053-85D1-4662-8066-40D5C180C739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAEBE053-85D1-4662-8066-40D5C180C739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAEBE053-85D1-4662-8066-40D5C180C739}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D98C363-9886-48FF-B121-6EDFD4113CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D98C363-9886-48FF-B121-6EDFD4113CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D98C363-9886-48FF-B121-6EDFD4113CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D98C363-9886-48FF-B121-6EDFD4113CA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{263C629D-5599-48EE-8E57-CB40592B7B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{263C629D-5599-48EE-8E57-CB40592B7B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{263C629D-5599-48EE-8E57-CB40592B7B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{263C629D-5599-48EE-8E57-CB40592B7B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,8 +62,6 @@ Global
 		{99E444D0-1E27-4796-B043-D1C82B95F416} = {4A2BABE0-149F-4D2E-A8A2-155D2BC60941}
 		{803ECA21-3D7A-4071-A25A-A85D8F3D9B05} = {12269252-3A0A-49C2-95BA-A5186D57C129}
 		{AAEBE053-85D1-4662-8066-40D5C180C739} = {4A2BABE0-149F-4D2E-A8A2-155D2BC60941}
-		{3D98C363-9886-48FF-B121-6EDFD4113CA5} = {27C52690-1FEF-4095-81C6-88EBC45DEA34}
-		{263C629D-5599-48EE-8E57-CB40592B7B7D} = {27C52690-1FEF-4095-81C6-88EBC45DEA34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1B9927D-1774-4107-A235-3C29FF062DA2}

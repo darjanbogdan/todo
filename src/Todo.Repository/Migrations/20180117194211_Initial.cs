@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace Todo.Repository.Migrations
+namespace Todo.DataAccess.Migrations
 {
     public partial class Initial : Migration
     {

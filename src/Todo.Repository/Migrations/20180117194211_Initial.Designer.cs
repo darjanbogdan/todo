@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
-using Todo.Repository.Context;
+using Todo.DataAccess.Context;
 
-namespace Todo.Repository.Migrations
+namespace Todo.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
     [Migration("20180117194211_Initial")]
