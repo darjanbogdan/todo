@@ -34,6 +34,27 @@ namespace Todo.WebApi
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            InitializeContainer(app);
+
+            container.Verify();
+
+            app.UseAuthentication();
+
+            app.UseMvc();
+        }
+
+        private void InitializeContainer(IApplicationBuilder app)
+        {
+            container.BootstrapDataAccess(Configuration);
+
+            container.BootstrapIdentity(app, Configuration);
+
+            container.BootstrapWebApi(app, Configuration);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -73,18 +94,6 @@ namespace Todo.WebApi
             IntegrateSimpleInjector(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            InitializeContainer(app);
-
-            container.Verify();
-
-            app.UseAuthentication();
-
-            app.UseMvc();
-        }
-
         private void IntegrateSimpleInjector(IServiceCollection services)
         {
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
@@ -95,15 +104,6 @@ namespace Todo.WebApi
 
             services.EnableSimpleInjectorCrossWiring(container);
             services.UseSimpleInjectorAspNetRequestScoping(container);
-        }
-
-        private void InitializeContainer(IApplicationBuilder app)
-        {
-            container.BootstrapDataAccess(Configuration);
-
-            container.BootstrapIdentity(app, Configuration);
-
-            container.BootstrapWebApi(app, Configuration);
         }
     }
 }

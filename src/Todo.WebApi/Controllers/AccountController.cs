@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Todo.Domain.Model.Identity;
 using Todo.Domain.Storage.Identity;
 
 namespace Todo.WebApi.Controllers
@@ -18,9 +19,28 @@ namespace Todo.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<IActionResult> RegisterAccount()
+        public async Task<IActionResult> RegisterAccount()
         {
-            return Task.FromResult<IActionResult>(Ok(this.userStorage != null));
+            var user = new User()
+            {
+                Id = Guid.NewGuid(),
+                Email = "test@gmail.com",
+                EmailConfirmed = true,
+                UserName = "test"
+            };
+
+            try
+            {
+                bool created = await this.userStorage.CreateAsync(user, "Password1!");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return Created($"/accounts/{user.Id}", user);
         }
     }
 }
